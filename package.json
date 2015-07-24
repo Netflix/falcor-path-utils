@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Netflix/falcor-path-utils/issues"
   },
-  "homepage": "https://github.com/Netflix/falcor-path-utils#readme"
+  "homepage": "https://github.com/Netflix/falcor-path-utils#readme",
+  "devDependencies": {
+    "sinon": "^1.15.4"
+  }
 }
