@@ -1,0 +1,19 @@
+{
+  "name": "falcor-path-utils",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Netflix/falcor-path-utils.git"
+  },
+  "author": "Netflix",
+  "license": "ALV2",
+  "bugs": {
+    "url": "https://github.com/Netflix/falcor-path-utils/issues"
+  },
+  "homepage": "https://github.com/Netflix/falcor-path-utils#readme"
+}
