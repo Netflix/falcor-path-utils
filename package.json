@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Netflix/falcor-path-utils#readme",
   "devDependencies": {
+    "chai": "^3.2.0",
     "sinon": "^1.15.4"
   }
 }
