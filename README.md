@@ -13,5 +13,6 @@ var collapsedPaths = util.collapse([
   ["genres", 0, "titles", 1, "name"],
   ["genres", 0, "titles", 1, "rating"]
 ]);
-~~~
 
+// collapsed paths is ["genres", 0, "titles", {from: 0, to: 1}, ["name", "rating"]]
+~~~
