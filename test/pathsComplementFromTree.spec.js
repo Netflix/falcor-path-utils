@@ -1,18 +1,18 @@
-var stripFromPathsWithTree = require('./../lib/stripFromPathsWithTree');
+var pathsComplementFromTree = require('./../lib/pathsComplementFromTree');
 var expect = require('chai').expect;
 
-describe('stripFromPathsWithTree', function() {
+describe('pathsComplementFromTree', function() {
     it('should strip the single path from tree.', function() {
         var paths = [['one', 'two']];
         var tree = {one: {two: null}};
-        var out = stripFromPathsWithTree(paths, tree);
+        var out = pathsComplementFromTree(paths, tree);
         expect(out).to.deep.equals([]);
     });
 
     it('should not strip the single path from tree.', function() {
         var paths = [['one', 'two']];
         var tree = {one: {too: null}};
-        var out = stripFromPathsWithTree(paths, tree);
+        var out = pathsComplementFromTree(paths, tree);
         expect(out).to.deep.equals([['one', 'two']]);
     });
 
@@ -31,7 +31,7 @@ describe('stripFromPathsWithTree', function() {
                 }
             }
         };
-        var out = stripFromPathsWithTree(paths, tree);
+        var out = pathsComplementFromTree(paths, tree);
         expect(out).to.deep.equals([['one', {from: 0, to: 2}, 'two']]);
     });
 });
