@@ -161,49 +161,55 @@ describe('toPaths', function() {
             -1,
             10,
             -10,
-            9007199254740991,
-            -9007199254740991,
+            9007199254740991, // max safe int
+            -9007199254740991, // min safe int
             '0',
             '1',
             '-1',
             '10',
             '-10',
-            '9007199254740991',
-            '-9007199254740991',
+            '9007199254740991', // max safe int
+            '-9007199254740991', // min safe int
         ];
         thingsThatShouldReturnTrue.forEach(function(thing) {
             var should = 'should return true on ' + JSON.stringify(thing);
-            it(should, function() { expect(isSafeNumber(thing)).to.equal(true); });
+            it(should, function() {
+                expect(isSafeNumber(thing)).to.equal(true);
+            });
         });
 
         var thingsThatShouldReturnFalse = [
-            '-0',
             [],
+            {},
             null,
             true,
             false,
-            "",
+            undefined,
             Infinity,
             -Infinity,
-            "9007199254740992",
-            "-9007199254740992",
-            9007199254740992,
-            -9007199254740992,
-            undefined,
-            "01",
-            "0d",
-            "1d",
-            "_",
-            " 1",
-            "- 1",
-            " ",
-            "0x123",
-            "0b1101",
-            "deadbeef",
+            '9007199254740992', // max safe int + 1
+            '-9007199254740992', // min safe int - 1
+            9007199254740992, // max safe int + 1
+            -9007199254740992, // min safe int - 1
+            '648365838265483646384563538',
+            '-0',
+            '',
+            '01',
+            '0d',
+            '1d',
+            '_',
+            ' 1',
+            '- 1',
+            ' ',
+            '0x123',
+            '0b1101',
+            'deadbeef',
         ];
         thingsThatShouldReturnFalse.forEach(function(thing) {
             var should = 'should return false on ' + JSON.stringify(thing);
-            it(should, function() { expect(isSafeNumber(thing)).to.equal(false); });
+            it(should, function() {
+                expect(isSafeNumber(thing)).to.equal(false);
+            });
         });
     });
 });
