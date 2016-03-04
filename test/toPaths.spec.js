@@ -2,6 +2,8 @@ var expect = require('chai').expect;
 var toPaths = require('../lib/toPaths');
 var toTree = require('../lib/toTree');
 
+var isSafeNumber = toPaths._isSafeNumber;
+
 describe('toPaths', function() {
     it('toPaths a pathmap that has overlapping branch and leaf nodes', function() {
 
@@ -149,5 +151,58 @@ describe('toPaths', function() {
 
         expect(toTree(toPaths(treeMap))).to.deep.equals(expectedTree);
     });
-});
 
+    describe('isSafeNumber', function() {
+
+      var thingsThatShouldReturnTrue = [
+        0,
+        1,
+        -0,
+        -1,
+        10,
+        -10,
+        9007199254740991,
+        -9007199254740991,
+        '0',
+        '1',
+        '-0',
+        '-1',
+        '10',
+        '-10',
+        '9007199254740991',
+        '-9007199254740991',
+      ];
+      thingsThatShouldReturnTrue.forEach(function(thing) {
+        var should = 'should return true on ' + JSON.stringify(thing);
+        it(should, function() { expect(isSafeNumber(thing)).to.equal(true); });
+      });
+
+      var thingsThatShouldReturnFalse = [
+        [],
+        null,
+        true,
+        false,
+        "",
+        Infinity,
+        -Infinity,
+        "9007199254740992",
+        "-9007199254740992",
+        9007199254740992,
+        -9007199254740992,
+        undefined,
+        "01",
+        "0d",
+        "_",
+        " 1",
+        "- 1",
+        " ",
+        "0x123",
+        "0b1101",
+        "deadbeef",
+      ];
+      thingsThatShouldReturnFalse.forEach(function(thing) {
+        var should = 'should return false on ' + JSON.stringify(thing);
+        it(should, function() { expect(isSafeNumber(thing)).to.equal(false); });
+      });
+    });
+});
