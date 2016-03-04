@@ -165,7 +165,6 @@ describe('toPaths', function() {
             -9007199254740991,
             '0',
             '1',
-            '-0',
             '-1',
             '10',
             '-10',
@@ -178,6 +177,7 @@ describe('toPaths', function() {
         });
 
         var thingsThatShouldReturnFalse = [
+            '-0',
             [],
             null,
             true,
@@ -192,6 +192,7 @@ describe('toPaths', function() {
             undefined,
             "01",
             "0d",
+            "1d",
             "_",
             " 1",
             "- 1",
