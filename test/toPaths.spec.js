@@ -154,55 +154,55 @@ describe('toPaths', function() {
 
     describe('isSafeNumber', function() {
 
-      var thingsThatShouldReturnTrue = [
-        0,
-        1,
-        -0,
-        -1,
-        10,
-        -10,
-        9007199254740991,
-        -9007199254740991,
-        '0',
-        '1',
-        '-0',
-        '-1',
-        '10',
-        '-10',
-        '9007199254740991',
-        '-9007199254740991',
-      ];
-      thingsThatShouldReturnTrue.forEach(function(thing) {
-        var should = 'should return true on ' + JSON.stringify(thing);
-        it(should, function() { expect(isSafeNumber(thing)).to.equal(true); });
-      });
+        var thingsThatShouldReturnTrue = [
+            0,
+            1,
+            -0,
+            -1,
+            10,
+            -10,
+            9007199254740991,
+            -9007199254740991,
+            '0',
+            '1',
+            '-0',
+            '-1',
+            '10',
+            '-10',
+            '9007199254740991',
+            '-9007199254740991',
+        ];
+        thingsThatShouldReturnTrue.forEach(function(thing) {
+            var should = 'should return true on ' + JSON.stringify(thing);
+            it(should, function() { expect(isSafeNumber(thing)).to.equal(true); });
+        });
 
-      var thingsThatShouldReturnFalse = [
-        [],
-        null,
-        true,
-        false,
-        "",
-        Infinity,
-        -Infinity,
-        "9007199254740992",
-        "-9007199254740992",
-        9007199254740992,
-        -9007199254740992,
-        undefined,
-        "01",
-        "0d",
-        "_",
-        " 1",
-        "- 1",
-        " ",
-        "0x123",
-        "0b1101",
-        "deadbeef",
-      ];
-      thingsThatShouldReturnFalse.forEach(function(thing) {
-        var should = 'should return false on ' + JSON.stringify(thing);
-        it(should, function() { expect(isSafeNumber(thing)).to.equal(false); });
-      });
+        var thingsThatShouldReturnFalse = [
+            [],
+            null,
+            true,
+            false,
+            "",
+            Infinity,
+            -Infinity,
+            "9007199254740992",
+            "-9007199254740992",
+            9007199254740992,
+            -9007199254740992,
+            undefined,
+            "01",
+            "0d",
+            "_",
+            " 1",
+            "- 1",
+            " ",
+            "0x123",
+            "0b1101",
+            "deadbeef",
+        ];
+        thingsThatShouldReturnFalse.forEach(function(thing) {
+            var should = 'should return false on ' + JSON.stringify(thing);
+            it(should, function() { expect(isSafeNumber(thing)).to.equal(false); });
+        });
     });
 });
