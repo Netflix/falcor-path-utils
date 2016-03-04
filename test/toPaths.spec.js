@@ -185,6 +185,7 @@ describe('toPaths', function() {
             true,
             false,
             undefined,
+            NaN,
             Infinity,
             -Infinity,
             '9007199254740992', // max safe int + 1
