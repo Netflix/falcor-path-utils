@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/gulp test"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,8 @@
   "devDependencies": {
     "chai": "^3.2.0",
     "falcor-json-graph": "^1.1.7",
-    "sinon": "^1.15.4"
+    "sinon": "^1.15.4",
+    "gulp-mocha": "~2.2.0",
+    "gulp": "^3.9.0"
   }
 }
