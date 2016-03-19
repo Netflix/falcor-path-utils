@@ -4,5 +4,4 @@ describe('falcor-path-utils', function() {
     require('./pathsComplementFromTree.spec');
     require('./optimizePathSets.spec');
     require('./pathCount.spec');
-    require('./groovytests.spec');
 });
