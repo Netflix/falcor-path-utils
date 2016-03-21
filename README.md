@@ -43,12 +43,12 @@ This repository contains utilities for transforming and manipulating Falcor path
 * `pathCount(pathSet)`<br>
  Returns the number of paths in a PathSet.
  
-~~~js
-var util = require("falcor-path-utils");
-console.log(util.pathCount(["titlesById", [512, 628], ["name","rating"]])) 
-// prints 4, because ["titlesById", [512, 628], ["name","rating"]] contains...
-// ["titlesById", 512, "name"]
-// ["titlesById", 512, "rating"]
-// ["titlesById", 628, "name"]
-// ["titlesById", 628, "rating"]
-~~~
+  ~~~js
+  var util = require("falcor-path-utils");
+  console.log(util.pathCount(["titlesById", [512, 628], ["name","rating"]])) 
+  // prints 4, because ["titlesById", [512, 628], ["name","rating"]] contains...
+  // ["titlesById", 512, "name"]
+  // ["titlesById", 512, "rating"]
+  // ["titlesById", 628, "name"]
+  // ["titlesById", 628, "rating"]
+  ~~~
