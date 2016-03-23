@@ -2,6 +2,8 @@ var expect = require('chai').expect;
 var toPaths = require('../lib/toPaths');
 var toTree = require('../lib/toTree');
 
+var isSafeNumber = toPaths._isSafeNumber;
+
 describe('toPaths', function() {
     it('toPaths a pathmap that has overlapping branch and leaf nodes', function() {
 
@@ -66,6 +68,46 @@ describe('toPaths', function() {
             fourth[2][0] === 'rating')  && (
             fourth[2][1] === 'summary')
         ).to.equal(true);
+    });
+
+    it('toPaths should not coerce numbers to strings outside the safe range', function() {
+        /*
+         * For reference:
+         * https://github.com/Netflix/falcor-router/issues/176
+         * https://github.com/Netflix/falcor-router/issues/68
+         * https://github.com/Netflix/falcor-path-utils/pull/6
+         */
+
+        var pathMaps = [null, {
+            lolomo: 1
+        }, {
+            lolomo: {
+                '0': 1,
+                '1': 1,
+                '234': 1,
+                '345678': 1,
+                '4253674286': 1,
+                '9007199254740991': 1,
+                '9007199254740992': 1,
+                '918572487653498743278645': 1,
+            }
+        }];
+
+        var paths = toPaths(pathMaps).sort(function(a, b) {
+            return a.length - b.length;
+        });
+
+        // NOTE:
+        // chai equal() is strict such that expect(4).to.equal('4')
+        // will fail and vice versa.
+        expect(paths[1][1][0]).to.equal(0);
+        expect(paths[1][1][1]).to.equal(1);
+        expect(paths[1][1][2]).to.equal(234);
+        expect(paths[1][1][3]).to.equal(345678);
+        expect(paths[1][1][4]).to.equal(4253674286);
+        expect(paths[1][1][5]).to.equal(9007199254740991); // max safe int
+        expect(paths[1][1][6]).to.equal('9007199254740992'); // max safe int + 1
+        expect(paths[1][1][7]).to.equal('918572487653498743278645'); // absurdly large
     });
 
 
@@ -149,5 +191,66 @@ describe('toPaths', function() {
 
         expect(toTree(toPaths(treeMap))).to.deep.equals(expectedTree);
     });
-});
 
+    describe('isSafeNumber', function() {
+
+        var thingsThatShouldReturnTrue = [
+            0,
+            1,
+            -0,
+            -1,
+            10,
+            -10,
+            9007199254740991, // max safe int
+            -9007199254740991, // min safe int
+            '0',
+            '1',
+            '-1',
+            '10',
+            '-10',
+            '9007199254740991', // max safe int
+            '-9007199254740991', // min safe int
+        ];
+        thingsThatShouldReturnTrue.forEach(function(thing) {
+            var should = 'should return true on ' + JSON.stringify(thing);
+            it(should, function() {
+                expect(isSafeNumber(thing)).to.equal(true);
+            });
+        });
+
+        var thingsThatShouldReturnFalse = [
+            [],
+            {},
+            null,
+            true,
+            false,
+            undefined,
+            NaN,
+            Infinity,
+            -Infinity,
+            '9007199254740992', // max safe int + 1
+            '-9007199254740992', // min safe int - 1
+            9007199254740992, // max safe int + 1
+            -9007199254740992, // min safe int - 1
+            '648365838265483646384563538',
+            '-0',
+            '',
+            '01',
+            '0d',
+            '1d',
+            '_',
+            ' 1',
+            '- 1',
+            ' ',
+            '0x123',
+            '0b1101',
+            'deadbeef',
+        ];
+        thingsThatShouldReturnFalse.forEach(function(thing) {
+            var should = 'should return false on ' + JSON.stringify(thing);
+            it(should, function() {
+                expect(isSafeNumber(thing)).to.equal(false);
+            });
+        });
+    });
+});
