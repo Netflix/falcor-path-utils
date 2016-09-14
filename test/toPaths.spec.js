@@ -245,6 +245,12 @@ describe('toPaths', function() {
             '0x123',
             '0b1101',
             'deadbeef',
+            0.1,
+            -0.1,
+            '1.0',
+            '-1.0',
+            '0.1',
+            '-0.1',
         ];
         thingsThatShouldReturnFalse.forEach(function(thing) {
             var should = 'should return false on ' + JSON.stringify(thing);
