@@ -11,7 +11,7 @@
     "url": "git+https://github.com/Netflix/falcor-path-utils.git"
   },
   "author": "Netflix",
-  "license": "ALV2",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Netflix/falcor-path-utils/issues"
   },
