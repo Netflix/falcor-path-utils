@@ -1,5 +1,5 @@
 # Falcor Path Utils
- 
+
 This repository contains utilities for transforming and manipulating Falcor paths.
 
 ## Utility functions:
@@ -15,7 +15,7 @@ This repository contains utilities for transforming and manipulating Falcor path
     ["genres", 0, "titles", 1, "name"],
     ["genres", 0, "titles", 1, "rating"]
   ]);
-  
+
   // collapsed paths is ["genres", 0, "titles", {from: 0, to: 1}, ["name", "rating"]]
   ~~~
 
@@ -42,10 +42,16 @@ This repository contains utilities for transforming and manipulating Falcor path
 
 * `pathCount(pathSet)`<br>
  Returns the number of paths in a PathSet.
- 
+
+* `escape(string)`<br>
+ Escapes untrusted input to make it safe to include in a path.
+
+ * `unescape(string)`<br>
+  Unescapes a string encoded with escape.
+
   ~~~js
   var util = require("falcor-path-utils");
-  console.log(util.pathCount(["titlesById", [512, 628], ["name","rating"]])) 
+  console.log(util.pathCount(["titlesById", [512, 628], ["name","rating"]]))
   // prints 4, because ["titlesById", [512, 628], ["name","rating"]] contains...
   // ["titlesById", 512, "name"]
   // ["titlesById", 512, "rating"]
