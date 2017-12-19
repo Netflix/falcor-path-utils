@@ -1,7 +1,8 @@
-describe('falcor-path-utils', function() {
+describe('falcor-path-utils', function () {
     require('./toPaths.spec');
     require('./toTree.spec');
     require('./pathsComplementFromTree.spec');
+    require('./jsonKey.spec');
     require('./optimizePathSets.spec');
     require('./pathCount.spec');
     require("./escape.spec");
