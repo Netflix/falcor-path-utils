@@ -138,7 +138,16 @@ describe('optimizePathSets', function() {
         expect(out.paths).to.deep.equal(expected);
     });
 
-    it('should throw.', function() {
+    it('should preserve null in middle of path.', function() {
+        var cache = getCache();
+        var paths = [['videos', null, 'b']];
+
+        var out = optimizePathSets(cache, paths);
+        var expected = [['videos', null, 'b']];
+        expect(out.paths).to.deep.equal(expected);
+    });
+
+    it('should return an error.', function() {
         var cache = getCache();
         var paths = [['videosList', 'inner', 'summary']];
 
@@ -164,7 +173,10 @@ function getCache() {
             6: 'a',
             7: 1,
             8: true,
-            9: null
+            9: null,
+            'null': {
+                x: 1
+            }
         },
         falsey: {
             string: '',
