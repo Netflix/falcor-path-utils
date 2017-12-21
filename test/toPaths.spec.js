@@ -1,8 +1,8 @@
 var expect = require('chai').expect;
-var toPaths = require('../lib/toPaths');
-var toTree = require('../lib/toTree');
-
-var isSafeNumber = toPaths._isSafeNumber;
+var pathUtils = require('..');
+var toPaths = pathUtils.toPaths;
+var toTree = pathUtils.toTree;
+var isIntegerKey = pathUtils.isIntegerKey;
 
 describe('toPaths', function() {
     it('toPaths a pathmap that has overlapping branch and leaf nodes', function() {
@@ -192,7 +192,7 @@ describe('toPaths', function() {
         expect(toTree(toPaths(treeMap))).to.deep.equals(expectedTree);
     });
 
-    describe('isSafeNumber', function() {
+    describe('isIntegerKey', function() {
 
         var thingsThatShouldReturnTrue = [
             0,
@@ -214,7 +214,7 @@ describe('toPaths', function() {
         thingsThatShouldReturnTrue.forEach(function(thing) {
             var should = 'should return true on ' + JSON.stringify(thing);
             it(should, function() {
-                expect(isSafeNumber(thing)).to.equal(true);
+                expect(isIntegerKey(thing)).to.equal(true);
             });
         });
 
@@ -255,7 +255,7 @@ describe('toPaths', function() {
         thingsThatShouldReturnFalse.forEach(function(thing) {
             var should = 'should return false on ' + JSON.stringify(thing);
             it(should, function() {
-                expect(isSafeNumber(thing)).to.equal(false);
+                expect(isIntegerKey(thing)).to.equal(false);
             });
         });
     });
