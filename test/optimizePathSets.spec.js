@@ -19,7 +19,7 @@ describe('optimizePathSets', function() {
 
         var out = optimizePathSets(cache, paths);
         var expected = [['videos', 956, 'summary']];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
     it('should optimize a complex path.', function() {
@@ -31,7 +31,7 @@ describe('optimizePathSets', function() {
             ['videosList', 0, 'summary'],
             ['videos', 956, 'summary']
         ];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
     it('should remove found paths', function() {
@@ -43,7 +43,7 @@ describe('optimizePathSets', function() {
             ['videosList', 0, 'summary'],
             ['videos', 956, 'summary']
         ];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
     it('should follow double references.', function() {
@@ -54,7 +54,7 @@ describe('optimizePathSets', function() {
         var expected = [
             ['videos', 956, 'summary']
         ];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
     it('should short circuit on ref.', function() {
@@ -63,7 +63,7 @@ describe('optimizePathSets', function() {
 
         var out = optimizePathSets(cache, paths);
         var expected = [];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
     it('should short circuit on primitive string values', function() {
@@ -72,7 +72,7 @@ describe('optimizePathSets', function() {
 
         var out = optimizePathSets(cache, paths);
         var expected = [];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
     it('should short circuit on primitive number values', function() {
@@ -81,7 +81,7 @@ describe('optimizePathSets', function() {
 
         var out = optimizePathSets(cache, paths);
         var expected = [];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
     it('should short circuit on primitive boolean values', function() {
@@ -90,7 +90,7 @@ describe('optimizePathSets', function() {
 
         var out = optimizePathSets(cache, paths);
         var expected = [];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
     it('should short circuit on primitive null value', function() {
@@ -99,7 +99,7 @@ describe('optimizePathSets', function() {
 
         var out = optimizePathSets(cache, paths);
         var expected = [];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
     it('should not treat falsey string as missing', function() {
@@ -108,7 +108,7 @@ describe('optimizePathSets', function() {
 
         var out = optimizePathSets(cache, paths);
         var expected = [];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
     it('should not treat falsey number as missing', function() {
@@ -117,7 +117,7 @@ describe('optimizePathSets', function() {
 
         var out = optimizePathSets(cache, paths);
         var expected = [];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
     it('should not treat falsey boolean as missing', function() {
@@ -126,7 +126,7 @@ describe('optimizePathSets', function() {
 
         var out = optimizePathSets(cache, paths);
         var expected = [];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
     it('should not treat falsey null as missing', function() {
@@ -135,21 +135,24 @@ describe('optimizePathSets', function() {
 
         var out = optimizePathSets(cache, paths);
         var expected = [];
-        expect(out).to.deep.equal(expected);
+        expect(out.paths).to.deep.equal(expected);
     });
 
-    it('should throw.', function() {
+    it('should preserve null in middle of path.', function() {
+        var cache = getCache();
+        var paths = [['videos', null, 'b']];
+
+        var out = optimizePathSets(cache, paths);
+        var expected = [['videos', null, 'b']];
+        expect(out.paths).to.deep.equal(expected);
+    });
+
+    it('should return an error.', function() {
         var cache = getCache();
         var paths = [['videosList', 'inner', 'summary']];
 
-        var caught = false;
-        try {
-            optimizePathSets(cache, paths);
-        } catch (e) {
-            caught = true;
-            expect(e.message).to.equals(errors.innerReferences);
-        }
-        expect(caught).to.equals(true);
+        var out = optimizePathSets(cache, paths);
+        expect(out.error.message).to.equals(errors.innerReferences);
     });
 
 });
@@ -170,7 +173,10 @@ function getCache() {
             6: 'a',
             7: 1,
             8: true,
-            9: null
+            9: null,
+            'null': {
+                x: 1
+            }
         },
         falsey: {
             string: '',
