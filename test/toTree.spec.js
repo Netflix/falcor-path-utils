@@ -17,6 +17,27 @@ describe('toTree', function() {
         expect(toTree([input])).to.deep.equals(out);
     });
 
+    it('should explode an empty path array.', function() {
+        var input = ['one', []];
+        var out = {one: {}};
+
+        expect(toTree([input])).to.deep.equals(out);
+    });
+
+    it('should explode an empty path range.', function() {
+        var input = ['one', { from: 0, to: -1 }];
+        var out = {one: {}};
+
+        expect(toTree([input])).to.deep.equals(out);
+    });
+
+    it('should explode an empty path range in array.', function() {
+        var input = ['one', [{ from: 0, to: -1 }]];
+        var out = {one: {}};
+
+        expect(toTree([input])).to.deep.equals(out);
+    });
+
     it('should explode a set of complex and simple paths.', function() {
         var input = [
             ['one', ['two', 'three']],
