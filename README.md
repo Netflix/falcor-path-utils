@@ -41,13 +41,7 @@ This repository contains utilities for transforming and manipulating Falcor path
   ([see spec](./test/optimizePathSets.spec.js))
 
 * `pathCount(pathSet)`<br>
- Returns the number of paths in a PathSet.
-
-* `escape(string)`<br>
- Escapes untrusted input to make it safe to include in a path.
-
- * `unescape(string)`<br>
-  Unescapes a string encoded with escape.
+  Returns the number of paths in a PathSet.
 
   ~~~js
   var util = require("falcor-path-utils");
@@ -58,3 +52,12 @@ This repository contains utilities for transforming and manipulating Falcor path
   // ["titlesById", 628, "name"]
   // ["titlesById", 628, "rating"]
   ~~~
+
+* `escape(string)`<br>
+  Escapes untrusted input to make it safe to include in a path.
+
+* `unescape(string)`<br>
+  Unescapes a string encoded with escape.
+
+* `materialize(pathSet, value)`<br>
+  Construct a JsonGraph of value at pathSet paths.
