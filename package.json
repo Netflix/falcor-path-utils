@@ -18,7 +18,7 @@
   "homepage": "https://github.com/Netflix/falcor-path-utils#readme",
   "devDependencies": {
     "chai": "^3.2.0",
-    "falcor-json-graph": "^2.1.1",
+    "falcor-json-graph": "^2.2.1",
     "gulp": "^3.9.0",
     "gulp-mocha": "~2.2.0",
     "sinon": "^1.15.4"
