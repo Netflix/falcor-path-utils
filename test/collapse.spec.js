@@ -49,4 +49,18 @@ describe('collapse', function() {
             ['videos', { from: 1, to: 6}, 'summary']
         ]);
     });
+
+    it('should parse strings to integer by default', function() {
+            var result = collapse([['videosById', '1234', 'title']]);
+            expect(result).to.deep.equals([['videosById', 1234, 'title']]);
+    });
+
+    it('should not parse strings to integer with option', function() {
+            var result = collapse([['videosById', '1234', 'title']], {
+                    parseInteger: false
+            });
+            expect(result).to.deep.equals(
+                    [['videosById', '1234', 'title']]
+            );
+    });
 });
