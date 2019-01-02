@@ -1,4 +1,5 @@
 describe('falcor-path-utils', function () {
+    require('./collapse.spec');
     require('./toPaths.spec');
     require('./toTree.spec');
     require('./pathsComplementFromTree.spec');
