@@ -36,4 +36,17 @@ describe('collapse', function() {
             ['videosById', 1, ['title', 'artwork', 'summary']],
         ]);
     });
+
+    it('should collapse paths with mixed ranges', function() {
+        var paths = [
+            ['videos', [5, 1, 3], 'summary'],
+            ['videos', [2, 4, 6], 'summary']
+        ];
+
+        var result = collapse(paths);
+
+        expect(result).to.eql([
+            ['videos', { from: 1, to: 6}, 'summary']
+        ]);
+    });
 });
