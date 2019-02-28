@@ -1,15 +1,13 @@
-<a name="0.7.1"></a>
-### 0.7.1 (2019-01-09)
+# 0.7.2
+## Bugs
 
+- `iterateKeySet()` no longer attempts to treat `null` as a range object
 
-#### Features
+# 0.7.1
+## Features
 
-* **toPaths:** do not sort map ([480c7294](git+https://github.com/Netflix/falcor-path-utils.git/commit/480c7294))
+- [Do not sort collapse map path items](https://github.com/Netflix/falcor-path-utils/pull/19)
 
+## Breaking Changes
 
-#### Breaking Changes
-
-* collapse for [a, [c, b]] remains as it is instead of [a, [b, c]]
-
- ([480c7294](git+https://github.com/Netflix/falcor-path-utils.git/commit/480c7294))
-
+- `toPaths()` collapse for `["a", ["c", "b"]]` remains unchanged instead of sorting keys to `["a", ["b", "c"]]`
