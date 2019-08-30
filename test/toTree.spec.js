@@ -10,6 +10,13 @@ describe('toTree', function() {
         expect(toTree([input])).to.deep.equals(out);
     });
 
+    it('should explode a simplePath with reserved keyword.', function() {
+        var input = ['one', 'hasOwnProperty'];
+        var out = {one: {hasOwnProperty: null}};
+
+        expect(toTree([input])).to.deep.equals(out);
+    });
+
     it('should explode a complex.', function() {
         var input = ['one', ['two', 'three']];
         var out = {one: {three: null, two: null}};

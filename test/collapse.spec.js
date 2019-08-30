@@ -20,6 +20,15 @@ describe('collapse', function() {
         ]);
     });
 
+    it('should collapse a path with reserved keyword.', function() {
+        var paths = [['foo', 'hasOwnProperty'], ['foo', 'constructor']];
+
+        var result = collapse(paths);
+        expect(result).to.eql([
+            ['foo', ['hasOwnProperty', 'constructor']]
+        ]);
+    });
+
     it('should collapse paths with mixed adjacents', function() {
         var paths = [
             ['videosById', 1, 'title'],
