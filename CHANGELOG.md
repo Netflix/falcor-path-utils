@@ -1,3 +1,12 @@
+<a name="0.7.3"></a>
+### 0.7.3 (2019-08-30)
+
+
+#### Bug Fixes
+
+* **toTree:** support reserved keyword (#20) ([6ed1e78d](git+https://github.com/Netflix/falcor-path-utils.git/commit/6ed1e78d))
+
+
 # 0.7.2
 ## Bugs
 
