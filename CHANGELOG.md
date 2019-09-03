@@ -1,3 +1,12 @@
+<a name="0.7.4"></a>
+### 0.7.4 (2019-09-02)
+
+
+#### Bug Fixes
+
+* **toTree:** handle empty path ([8aa75109](git+https://github.com/Netflix/falcor-path-utils.git/commit/8aa75109))
+
+
 <a name="0.7.3"></a>
 ### 0.7.3 (2019-08-30)
 
