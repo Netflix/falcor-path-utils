@@ -4,7 +4,7 @@ This repository contains utilities for transforming and manipulating Falcor path
 
 ## Utility functions:
 
-* `collapse(paths)`<br>
+* `collapse(paths, [opts = { parseInteger: true }])`<br>
   Simplifies a set of paths. Example:
 
   ~~~js
