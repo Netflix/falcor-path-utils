@@ -1,3 +1,8 @@
+# 0.7.5
+## Changes
+- [Bump mixin-deep from 1.3.1 to 1.3.2](https://github.com/Netflix/falcor-path-utils/pull/22)
+- [Use NOINLINE to avoid inlining function definitions](https://github.com/Netflix/falcor-path-utils/pull/23)
+
 <a name="0.7.4"></a>
 ### 0.7.4 (2019-09-02)
 
